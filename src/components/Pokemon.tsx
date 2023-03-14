@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const Pokemon = ({ data }: any) => {
   const [details, setDetails] = useState<any>(null);
-  console.log(data);
 
   const fetchIndividualPokemon = () => {
     axios.get(data.url).then((response) => setDetails(response.data));

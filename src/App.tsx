@@ -4,12 +4,18 @@ import "./App.css";
 import Pokemon from "./components/Pokemon";
 
 function App() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<any>([]);
 
   useEffect(() => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon/")
-      .then((response) => setList(response.data.results));
+    axios.get("https://pokeapi.co/api/v2/pokemon/").then((response) => {
+      const sortedArray = [...response.data.results];
+
+      sortedArray.sort((a: any, b: any) => {
+        return a.name.localeCompare(b.name);
+      });
+
+      setList(sortedArray);
+    });
   }, []);
 
   return (
